@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Filtro de Ingredientes com forEach</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .lista {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Lista de Ingredientes</h2>
+        <div class="lista" id="listaCompleta">
+            <h3>Lista Completa:</h3>
+        </div>
+        <div class="lista" id="listaFiltrada">
+            <h3>Ingredientes da Receita:</h3>
+        </div>
+
+        <button onclick="filtrarIngredientes()">Filtrar Ingredientes</button>
+    </div>
+
+    <script>
+        const alimentos = ["Arroz", "Feijão", "Batata", "Macarrão", "Carne"];
+        
+        const ingredientesNecessarios = ["Feijão", "Batata"];
+
+        window.onload = function() {
+            let listaCompletaHTML = "<h3>Lista Completa:</h3>";
+            alimentos.forEach(alimento => {
+                listaCompletaHTML += alimento + ", ";
+            });
+            listaCompletaHTML = listaCompletaHTML.slice(0, -2);
+            document.getElementById("listaCompleta").innerHTML = listaCompletaHTML;
+        }
+
+        function filtrarIngredientes() {
+            let listaFiltradaHTML = "<h3>Ingredientes da Receita:</h3>";
+            let ingredientesFiltrados = [];
+            
+            alimentos.forEach(alimento => {
+                if(ingredientesNecessarios.includes(alimento)) {
+                    ingredientesFiltrados.push(alimento);
+                }
+            });
+
+            ingredientesFiltrados.forEach((ingrediente, index) => {
+                if(index === ingredientesFiltrados.length - 1) {
+                    listaFiltradaHTML += ingrediente;
+                } else {
+                    listaFiltradaHTML += ingrediente + ", ";
+                }
+            });
+
+            document.getElementById("listaFiltrada").innerHTML = listaFiltradaHTML;
+        }
+    </script>
+</body>
+</html>
