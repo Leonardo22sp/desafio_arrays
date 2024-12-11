@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Filtro de Ingredientes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .lista {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Lista de Ingredientes</h2>
+        <div class="lista" id="listaCompleta">
+            <h3>Lista Completa:</h3>
+        </div>
+        <div class="lista" id="listaFiltrada">
+            <h3>Ingredientes da Receita:</h3>
+        </div>
+
+        <button onclick="filtrarIngredientes()">Filtrar Ingredientes</button>
+    </div>
+
+    <script>
+        const alimentos = ["Arroz", "Feijão", "Batata", "Macarrão", "Carne"];
+        
+        const ingredientesNecessarios = ["Feijão", "Batata"];
+
+        window.onload = function() {
+            document.getElementById("listaCompleta").innerHTML += 
+                "<p>" + alimentos.join(", ") + "</p>";
+        }
+
+        function filtrarIngredientes() {
+            const listaFiltrada = alimentos.filter(alimento => 
+                ingredientesNecessarios.includes(alimento)
+            );
+            
+            document.getElementById("listaFiltrada").innerHTML = 
+                "<h3>Ingredientes da Receita:</h3>" +
+                "<p>" + listaFiltrada.join(", ") + "</p>";
+        }
+    </script>
+</body>
+</html>
